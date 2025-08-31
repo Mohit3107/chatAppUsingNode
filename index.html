@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        section h2 {
+            color: #34495e;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+
+        .project-item {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Chat Window Styles */
+        #chat-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        #chat-icon:hover {
+            transform: scale(1.1);
+        }
+
+        #chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 450px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #chat-header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        #chat-header h3 {
+            margin: 0;
+        }
+
+        #chat-close {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .message {
+            margin-bottom: 10px;
+        }
+
+        .message.sent {
+            text-align: right;
+        }
+
+        .message.received {
+            text-align: left;
+        }
+
+        .message p {
+            background-color: #ecf0f1;
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 18px;
+            max-width: 70%;
+            word-wrap: break-word;
+            margin: 0;
+        }
+
+        .message.sent p {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        #chat-input-container {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #eee;
+        }
+
+        #chat-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        #chat-send {
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #chat-send:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Mohit Kulshrestha</h1>
+            <p>Full-Stack Developer | Passionate about creating data & web solutions powered Gen AI</p>
+        </header>
+
+        <main>
+            <section id="about">
+                <h2>About Me</h2>
+                <p>Hello! I am a software developer with experience in building web applications using technologies like Node.js, Express, and JavaScript. I enjoy solving complex problems and creating clean, efficient code.</p>
+            </section>
+
+            <section id="projects">
+                <h2>Projects</h2>
+                <div class="project-item">
+                    <h3>E-commerce Platform</h3>
+                    <p>A full-stack e-commerce site with user authentication, product catalog, and a shopping cart. Built with Node.js and Express.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Social Media Dashboard</h3>
+                    <p>A dashboard to track social media metrics in real-time. Uses WebSockets for live data updates.</p>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>You can reach me at myemail@example.com or connect with me on LinkedIn.</p>
+            </section>
+        </main>
+    </div>
+
+    <div id="chat-icon">💬</div>
+
+    <div id="chat-window">
+        <div id="chat-header">
+            <h3>Chat with Me</h3>
+            <span id="chat-close">&times;</span>
+        </div>
+        <div id="chat-messages">
+            <div class="message received"><p>Hi there! How can I help you?</p></div>
+        </div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Type a message...">
+            <button id="chat-send">Send</button>
+        </div>
+    </div>
+
+    <!-- Creating a client for socket-->
+     <script src="/socket.io/socket.io.js"></script>
+
+    <!-- End: Creating a client for socket -->
+    <script>
+        const socket = io();
+
+        const chatIcon = document.getElementById('chat-icon');
+        const chatWindow = document.getElementById('chat-window');
+        const chatClose = document.getElementById('chat-close');
+        const chatInput = document.getElementById('chat-input');
+        const chatSend = document.getElementById('chat-send');
+        const chatMessages = document.getElementById('chat-messages');
+
+        // Toggle chat window visibility
+        chatIcon.addEventListener('click', () => {
+            chatWindow.style.display = 'flex';
+        });
+
+        chatClose.addEventListener('click', () => {
+            chatWindow.style.display = 'none';
+        });
+
+        // Handle sending messages (simulated)
+        chatSend.addEventListener('click', () => {
+            const messageText = chatInput.value.trim();
+            if (messageText !== '') {
+                // Add the user's message to the chat window
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', 'sent');
+                messageElement.innerHTML = `<p>${messageText}</p>`;
+                socket.emit('chat_msg',messageText)
+                chatMessages.appendChild(messageElement);
+
+                // Scroll to the bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                // Clear the input field
+                chatInput.value = '';
+
+                // Simulate a response from the other person
+                // setTimeout(() => {
+                //     const responseElement = document.createElement('div');
+                //     responseElement.classList.add('message', 'received');
+                //     responseElement.innerHTML = `<p>I am just a simulation. You need to connect me to a server to chat with a real person!</p>`;
+                //     chatMessages.appendChild(responseElement);
+                //     chatMessages.scrollTop = chatMessages.scrollHeight;
+                // }, 1000);
+            }
+        });
+
+        // Allow sending messages with the Enter key
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                chatSend.click();
+            }
+        });
+
+
+        socket.on('chat_msg', (msg) => {
+            //alert("getting response as:"+msg)
+                 setTimeout(() => {
+                    const responseElement = document.createElement('div');
+                    responseElement.classList.add('message', 'received');
+                    responseElement.innerHTML = `<p>${msg}</p>`;
+                    chatMessages.appendChild(responseElement);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                 }, 1000);
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+    </script>
+</body>
+</html>
